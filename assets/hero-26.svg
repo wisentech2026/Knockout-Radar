@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7c948" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#f7c948" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="auraGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f7c948" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#f7c948" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auraRed" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ff5a3c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auraGreen" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#19c36b" stop-opacity="0.11"/>
+      <stop offset="1" stop-color="#19c36b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="unitGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe9a8"/>
+      <stop offset="1" stop-color="#d9a52e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="640" fill="#070b12"/>
+  <ellipse cx="1140" cy="240" rx="560" ry="340" fill="url(#auraGold)"/>
+  <ellipse cx="260" cy="520" rx="440" ry="240" fill="url(#auraGold)" opacity="0.5"/>
+  <ellipse cx="160" cy="110" rx="300" ry="200" fill="url(#auraRed)"/>
+  <ellipse cx="760" cy="570" rx="360" ry="200" fill="url(#auraGreen)"/>
+  <polygon points="900,-40 1010,-40 1230,640 770,640" fill="url(#beam)"/>
+
+  <!-- 堆叠 26：官方构成语法（方形 + 四分之一圆单元）的原创演绎 -->
+  <g transform="translate(1118,28)" opacity="0.92">
+    <path d="M 0 56 A 56 56 0 0 1 56 0 L 56 56 Z" fill="0.95" fill-opacity="0"/>
+    <rect x="56" y="0" width="56" height="56" fill="0.8" fill-opacity="0"/>
+    <path d="M 112 0 A 56 56 0 0 1 168 56 L 112 56 Z" fill="0.95" fill-opacity="0"/>
+    <rect x="112" y="56" width="56" height="56" fill="0.55" fill-opacity="0"/>
+    <path d="M 56 168 A 56 56 0 0 1 0 112 L 56 112 Z" fill="0.7" fill-opacity="0"/>
+    <rect x="56" y="112" width="56" height="56" fill="0.85" fill-opacity="0"/>
+    <path d="M 168 112 A 56 56 0 0 1 112 168 L 112 112 Z" fill="0.6" fill-opacity="0"/>
+    <rect x="0" y="168" width="56" height="56" fill="0.55" fill-opacity="0"/>
+    <rect x="0" y="224" width="56" height="56" fill="0.95" fill-opacity="0"/>
+    <rect x="56" y="224" width="56" height="56" fill="0.8" fill-opacity="0"/>
+    <path d="M 168 224 A 56 56 0 0 1 112 280 L 112 224 Z" fill="0.9" fill-opacity="0"/>
+    <rect x="56" y="56" width="56" height="56" fill="0.5" fill-opacity="1"/>
+  </g>
+  <g transform="translate(1118,336)" opacity="0.92">
+    <path d="M 0 56 A 56 56 0 0 1 56 0 L 56 56 Z" fill="0.9" fill-opacity="0"/>
+    <rect x="56" y="0" width="56" height="56" fill="0.8" fill-opacity="0"/>
+    <path d="M 112 0 A 56 56 0 0 1 168 56 L 112 56 Z" fill="0.6" fill-opacity="0"/>
+    <rect x="0" y="56" width="56" height="56" fill="0.85" fill-opacity="0"/>
+    <rect x="0" y="112" width="56" height="56" fill="0.95" fill-opacity="0"/>
+    <rect x="56" y="112" width="56" height="56" fill="0.7" fill-opacity="0"/>
+    <path d="M 112 112 A 56 56 0 0 1 168 168 L 112 168 Z" fill="0.85" fill-opacity="0"/>
+    <rect x="0" y="168" width="56" height="56" fill="0.8" fill-opacity="0"/>
+    <rect x="112" y="168" width="56" height="56" fill="0.8" fill-opacity="0"/>
+    <path d="M 56 280 A 56 56 0 0 1 0 224 L 56 224 Z" fill="0.9" fill-opacity="0"/>
+    <rect x="56" y="224" width="56" height="56" fill="0.85" fill-opacity="0"/>
+    <path d="M 168 224 A 56 56 0 0 1 112 280 L 112 224 Z" fill="0.95" fill-opacity="0"/>
+  </g>
+  <g transform="translate(1118,28)">
+    <path d="M -89.60000000000001 78.4 A 56 56 0 0 1 -33.60000000000001 22.400000000000002 L -33.60000000000001 78.4 Z" fill="none" stroke="#f7c948" stroke-opacity="0.3" stroke-width="2"/>
+    <rect x="207.20000000000002" y="67.2" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.3" stroke-width="2"/>
+    <rect x="-67.2" y="179.20000000000002" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.25" stroke-width="2"/>
+    <path d="M 274.4 212.79999999999998 A 56 56 0 0 1 218.4 268.79999999999995 L 218.4 212.79999999999998 Z" fill="none" stroke="#f7c948" stroke-opacity="0.3" stroke-width="2"/>
+    <rect x="240.79999999999998" y="11.200000000000001" width="56" height="56" fill="#ff5a3c" fill-opacity="0.35"/>
+    <rect x="-106.39999999999999" y="117.60000000000001" width="56" height="56" fill="#ff5a3c" fill-opacity="0.3"/>
+    <rect x="229.59999999999997" y="145.6" width="56" height="56" fill="#19c36b" fill-opacity="0.32"/>
+    <rect x="-84.0" y="257.59999999999997" width="56" height="56" fill="#19c36b" fill-opacity="0.3"/>
+    <path d="M 196.0 -39.199999999999996 A 56 56 0 0 1 252.0 16.800000000000004 L 196.0 16.800000000000004 Z" fill="none" stroke="#f7c948" stroke-opacity="0.28" stroke-width="2"/>
+    <rect x="-50.4" y="-33.6" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.22" stroke-width="2"/>
+    <rect x="257.59999999999997" y="246.40000000000003" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.22" stroke-width="2"/>
+    <path d="M -67.20000000000002 336.0 A 56 56 0 0 1 -123.20000000000002 280.0 L -67.20000000000002 280.0 Z" fill="none" stroke="#f7c948" stroke-opacity="0.22" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(1118,28)">
+    <rect x="-156.79999999999998" y="72.8" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <path d="M 274.40000000000003 100.8 A 56 56 0 0 1 330.40000000000003 156.8 L 274.40000000000003 156.8 Z" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <path d="M -78.4 280.0 A 56 56 0 0 1 -134.4 224.0 L -78.4 224.0 Z" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <rect x="296.8" y="179.20000000000002" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <rect x="-173.6" y="145.6" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <path d="M 336.0 291.2 A 56 56 0 0 1 280.0 347.2 L 280.0 291.2 Z" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <rect x="-100.8" y="336.0" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <path d="M 246.40000000000003 358.40000000000003 A 56 56 0 0 1 302.40000000000003 414.40000000000003 L 246.40000000000003 414.40000000000003 Z" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <path d="M -89.6 459.2 A 56 56 0 0 1 -145.6 403.2 L -89.6 403.2 Z" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <rect x="308.0" y="392.0" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <rect x="-72.8" y="453.59999999999997" width="56" height="56" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+    <path d="M 324.8 481.59999999999997 A 56 56 0 0 1 268.8 537.5999999999999 L 268.8 481.59999999999997 Z" fill="none" stroke="#f7c948" stroke-opacity="0.2" stroke-width="1.6"/>
+  </g>
+
+  <!-- 底部球场弧线 -->
+  <g stroke="#f7c948" fill="none" opacity="0.16">
+    <path d="M-100 640 Q720 476 1540 640" stroke-width="1.6"/>
+  </g>
+</svg>

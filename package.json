@@ -1,0 +1,12 @@
+{
+  "name": "worldcup-knockout-radar",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "python3 -m http.server 8766",
+    "fetch": "node scripts/fetch-fixtures.mjs",
+    "simulate": "node scripts/simulate.mjs --sims 20000",
+    "update": "npm run fetch && npm run simulate"
+  },
+  "type": "module"
+}

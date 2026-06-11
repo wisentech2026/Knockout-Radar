@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Knockout Radar · 2026 世界杯淘汰赛路线预测</title>
+    <meta name="description" content="基于真实赛程与 20,000 次 Elo 蒙特卡洛模拟的 2026 世界杯晋级概率、相遇热力图与路径分析。" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero" aria-label="导语">
+      <nav class="topbar" aria-label="页面信息">
+        <span class="wordmark"><i aria-hidden="true">KR</i><span>Knockout Radar</span></span>
+        <span class="topbar-right">
+          <span class="lang-switch" role="group" aria-label="Language">
+            <button class="lang-btn" data-lang="zh" type="button">中</button>
+            <button class="lang-btn" data-lang="en" type="button">EN</button>
+            <button class="lang-btn" data-lang="es" type="button">ES</button>
+            <button class="lang-btn" data-lang="yue" type="button">粵</button>
+          </span>
+          <a class="bmc" id="bmcLinkTop" href="https://buymeacoffee.com/yourname" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h11v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8zM16 9h2a2 2 0 0 1 0 4h-2M7 4c0 .8.8 1 .8 1.8S7 7 7 7M10.5 4c0 .8.8 1 .8 1.8s-.8 1.2-.8 1.2"/></svg>
+            <span id="tBmcTop">请我喝咖啡</span>
+          </a>
+        </span>
+      </nav>
+
+      <div class="hero-inner">
+        <p class="eyebrow" id="tEyebrow">World Cup Prediction Lab · 美 加 墨 · 48 队 104 场</p>
+        <h1 id="tTitle">2026 世界杯淘汰赛路线预测</h1>
+        <p class="standfirst" id="dailyBrief">数据加载中…</p>
+        <div class="hero-meta">
+          <label class="chip">
+            <input type="checkbox" id="weatherToggle" checked />
+            <span id="tChipW">计入天气适应</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" id="hostToggle" checked />
+            <span id="tChipH">计入主场优势</span>
+          </label>
+          <span class="model-line" id="modelLine"></span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <nav id="bentoTop" class="bento" aria-label="四大板块入口">
+        <a class="bento-tile" href="#heatmap" data-section="heatmap">
+          <span class="tile-head"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><em id="tBentoHeatT">相遇概率热力图</em></span>
+          <strong id="bentoHeat">—</strong>
+          <small id="tBentoHeatS">点开任意格子，看两队在两万次模拟中相遇了多少次</small>
+        </a>
+        <a class="bento-tile" href="#probability" data-section="probability">
+          <span class="tile-head"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><em id="tBentoProbT">淘汰赛概率</em></span>
+          <strong id="bentoProb">—</strong>
+          <small id="tBentoProbS">32 / 16 / 8 / 4 强与夺冠概率榜</small>
+        </a>
+        <a class="bento-tile" href="#watch" data-section="watch">
+          <span class="tile-head"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v4.5" class="thin"/><circle cx="12" cy="17.2" r="0.4"/></svg><em id="tBentoWarnT">强强预警</em></span>
+          <strong id="bentoWarn">—</strong>
+          <small id="bentoWarnSmall">最可能提前碰面的豪门对决</small>
+        </a>
+        <a class="bento-tile" href="#path" data-section="path">
+          <span class="tile-head"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12c0-3 2-5 5-5h9M15 3l4 4-4 4M5 20h0"/><circle cx="5" cy="20" r="1.6"/></svg><em id="tBentoPathT">路径优势</em></span>
+          <strong id="bentoPath">—</strong>
+          <small id="tBentoPathS">签运最好的强队与最可能的爆冷者</small>
+        </a>
+      </nav>
+
+      <section id="probability" class="block" aria-label="晋级概率榜">
+        <div class="block-head">
+          <div>
+            <p class="kicker">01 · Knockout Probability</p>
+            <h2 id="probabilityTitle">进 16 强概率榜</h2>
+          </div>
+          <div class="seg" role="tablist" aria-label="轮次切换">
+            <button data-stage="p32" type="button">32 强</button>
+            <button data-stage="p16" class="active" type="button">16 强</button>
+            <button data-stage="p8" type="button">8 强</button>
+            <button data-stage="p4" type="button">4 强</button>
+            <button data-stage="pChampion" type="button">夺冠</button>
+          </div>
+        </div>
+
+        <div class="insights" id="insights"></div>
+        <div class="ranking" id="ranking" role="table" aria-label="晋级概率排名"></div>
+        <p class="footnote" id="tFnote">撞车风险与路径判断口径见模型说明。</p>
+      </section>
+
+      <section id="heatmap" class="block" aria-label="相遇概率热力图">
+        <div class="block-head">
+          <div>
+            <p class="kicker">02 · Meeting Heatmap</p>
+            <h2 id="tHeatTitle">16 队相遇概率</h2>
+          </div>
+          <div class="seg" role="tablist" aria-label="相遇轮次切换">
+            <button data-matrix="r32" class="active" type="button">32 强</button>
+            <button data-matrix="r16" type="button">16 强</button>
+            <button data-matrix="r8" type="button">8 强</button>
+            <button data-matrix="r4" type="button">4 强</button>
+          </div>
+        </div>
+        <p class="matrix-caption" id="matrixCaption">点按任意格子，查看两队在两万次模拟中实际相遇了多少次。</p>
+        <div class="heatmap-scroll">
+          <div class="heatmap" id="heatmapGrid" role="grid" aria-label="相遇概率矩阵"></div>
+        </div>
+      </section>
+
+      <section id="watch" class="block" aria-label="强强预警">
+        <div class="block-head">
+          <div>
+            <p class="kicker">03 · Collision Watch</p>
+            <h2 id="watchTitle">强强提前相遇预警</h2>
+          </div>
+        </div>
+        <p class="block-lede" id="tWatchLede">12 组 × 最佳第三名的新赛制下，强队提前碰面是最值得盯的结构性风险。</p>
+        <div class="watch-list" id="watchList"></div>
+      </section>
+
+      <section id="path" class="block" aria-label="路径与爆冷">
+        <div class="path-cols">
+          <div>
+            <p class="kicker">04 · Path Advantage</p>
+            <h2 id="tPathTitle">路径优势</h2>
+            <p class="block-lede" id="tPathLede">强队中 32 强对手池最友好的几支。</p>
+            <div id="pathList" class="path-list"></div>
+          </div>
+          <div>
+            <p class="kicker">04 · Upset Radar</p>
+            <h2 id="tUpsetTitle">爆冷雷达</h2>
+            <p class="block-lede" id="tUpsetLede">两万次模拟中，最常掀翻 Elo 更高对手的球队。</p>
+            <div id="upsetList" class="path-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="bracket" class="block" aria-label="最可能对阵图">
+        <div class="block-head">
+          <div>
+            <p class="kicker">05 · Bracket Map</p>
+            <h2 id="tBracketTitle">最可能对阵图</h2>
+          </div>
+        </div>
+        <p class="block-lede" id="tBracketLede">每场淘汰赛取两万次模拟中出现频率最高的对阵与胜者。</p>
+        <div class="bracket-half">
+          <h3 id="tUpper">上半区</h3>
+          <div class="bracket-scroll"><div class="bracket" id="upperBracket"></div></div>
+        </div>
+        <div class="bracket-half">
+          <h3 id="tLower">下半区</h3>
+          <div class="bracket-scroll"><div class="bracket" id="lowerBracket"></div></div>
+        </div>
+        <div class="final-line" id="finalLine"></div>
+      </section>
+
+      <footer class="colophon">
+        <h2 id="tColoH">模型与数据说明</h2>
+        <p id="methodLine">
+          分组、赛程与淘汰赛对阵树为 2026 真实数据（openfootball，开赛后含真实比分）；全部概率来自 Fable 5 的 20,000 次 Elo 蒙特卡洛模拟，并非官方概率。
+        </p>
+        <a class="bmc" id="bmcLink" href="https://buymeacoffee.com/yourname" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h11v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8zM16 9h2a2 2 0 0 1 0 4h-2M7 4c0 .8.8 1 .8 1.8S7 7 7 7M10.5 4c0 .8.8 1 .8 1.8s-.8 1.2-.8 1.2"/></svg>
+          <span id="tBmc">请我喝咖啡</span>
+        </a>
+        <h3 class="weights-h" id="tWeightsH">模型因子与权重</h3>
+        <div class="weights" id="weightTable"></div>
+        <p class="weights-excl" id="tWeightsExcl"></p>
+        <p id="tColoP2">
+          单场结果由泊松进球模型生成；这是概率模型，不构成任何投注建议。
+        </p>
+      </footer>
+    </main>
+
+    <nav class="dock" id="dock" aria-label="板块导航">
+      <button class="dock-tab" data-target="heatmap" type="button">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+        <span>热力图</span>
+      </button>
+      <button class="dock-tab" data-target="probability" type="button">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>
+        <span>概率榜</span>
+      </button>
+      <button class="dock-tab" data-target="watch" type="button">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v4.5"/></svg>
+        <span>预警</span>
+      </button>
+      <button class="dock-tab" data-target="path" type="button">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12c0-3 2-5 5-5h9M15 3l4 4-4 4"/></svg>
+        <span>路径</span>
+      </button>
+    </nav>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
