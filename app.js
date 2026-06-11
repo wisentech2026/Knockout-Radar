@@ -31,6 +31,7 @@ const T = {
     rounds: { r32: "32 强", r16: "16 强", r8: "8 强", r4: "半决赛" },
     probTitle: (st) => `${st}概率榜`,
     th: { team: "球队", collision: "撞车风险", path: "路径判断" },
+    colShort: "撞车",
     host: "东道主", group: (g) => `${g} 组`, oppPool: "对手池 Elo",
     pathLabels: { adv: "路径优势", press: "路径压力", mid: "路径中性" },
     fnote: "撞车风险 = 在 32 / 16 强阶段遇到 Elo 前八球队的概率；路径判断比较 32 强潜在对手池的平均强度（仅在 16 强概率前 16 的球队中评定）。",
@@ -108,6 +109,7 @@ const T = {
     rounds: { r32: "Round of 32", r16: "Round of 16", r8: "quarter-finals", r4: "semi-finals" },
     probTitle: (st) => `${st} — odds board`,
     th: { team: "Team", collision: "Collision risk", path: "Path read" },
+    colShort: "risk",
     host: "Host", group: (g) => `Group ${g}`, oppPool: "Opp. pool Elo",
     pathLabels: { adv: "Friendly path", press: "Hard path", mid: "Neutral path" },
     fnote: "Collision risk = probability of meeting a top-8 Elo side in the R32/R16. Path read compares the average strength of the potential R32 opponent pool (rated among the top 16 by R16 odds only).",
@@ -185,6 +187,7 @@ const T = {
     rounds: { r32: "16avos", r16: "octavos", r8: "cuartos", r4: "semifinales" },
     probTitle: (st) => `${st} — tabla de probabilidades`,
     th: { team: "Equipo", collision: "Riesgo de choque", path: "Lectura de ruta" },
+    colShort: "choque",
     host: "Anfitrión", group: (g) => `Grupo ${g}`, oppPool: "Elo del bombo rival",
     pathLabels: { adv: "Ruta favorable", press: "Ruta dura", mid: "Ruta neutral" },
     fnote: "Riesgo de choque = probabilidad de enfrentar a un top-8 de Elo en 16avos/octavos. La lectura de ruta compara la fuerza media del bombo rival de 16avos (solo entre los 16 mejores por probabilidad de octavos).",
@@ -261,6 +264,7 @@ const T = {
     rounds: { r32: "32 強", r16: "16 強", r8: "8 強", r4: "準決賽" },
     probTitle: (st) => `${st}機率榜`,
     th: { team: "球隊", collision: "撞車風險", path: "籤運判斷" },
+    colShort: "撞車",
     host: "主辦國", group: (g) => `${g} 組`, oppPool: "對手池 Elo",
     pathLabels: { adv: "籤運好", press: "籤運硬", mid: "籤運中性" },
     fnote: "撞車風險 = 喺 32 / 16 強撞到 Elo 頭八位球隊嘅機率；籤運判斷比較 32 強潛在對手池嘅平均實力（只喺 16 強機率頭 16 位嘅球隊入面評定）。",
@@ -533,9 +537,9 @@ function renderRanking() {
       </span>
       <span class="rk-prob">
         <span class="rk-bar"><i style="width:${x[state.stage]}%"></i></span>
-        <span class="rk-val num">${x[state.stage]}%</span>
+        <span class="rk-val num"><span class="rk-mini rk-mini-stage">${t.stagesTab[state.stage]}</span>${x[state.stage]}%</span>
       </span>
-      <span class="rk-collision ${colCls}"><span class="num">${x.collision}%</span></span>
+      <span class="rk-collision ${colCls}"><span class="rk-mini">${t.colShort}</span><span class="num">${x.collision}%</span></span>
       <span class="rk-path ${pathCls}">${t.pathLabels[x.pathCode]}<br /><span class="sub num">${t.oppPool} ${x.avgR32OppElo}</span></span>
     </div>`;
   });
