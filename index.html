@@ -4,7 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Knockout Radar · 2026 世界杯淘汰赛路线预测</title>
-    <meta name="description" content="基于真实赛程与 20,000 次 Elo 蒙特卡洛模拟的 2026 世界杯晋级概率、相遇热力图与路径分析。" />
+    <meta name="description" content="2026 美加墨世界杯淘汰赛预测：基于真实赛程与 20,000 次 Elo 蒙特卡洛模拟的 48 队晋级概率、夺冠概率、强强相遇热力图与路径分析。每日更新，开赛后计入真实比分。" />
+    <meta name="keywords" content="2026世界杯,世界杯预测,淘汰赛对阵,夺冠概率,晋级概率,世界杯赛程,World Cup 2026,predictions,bracket,Mundial 2026" />
+    <link rel="canonical" href="https://knockoutradar.wisentech.ai/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Knockout Radar" />
+    <meta property="og:title" content="2026 世界杯淘汰赛路线预测 · Knockout Radar" />
+    <meta property="og:description" content="20,000 次 Elo 蒙特卡洛模拟：48 队晋级与夺冠概率、强强相遇预警、最可能对阵图。每日更新。" />
+    <meta property="og:url" content="https://knockoutradar.wisentech.ai/" />
+    <meta property="og:image" content="https://knockoutradar.wisentech.ai/assets/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="2026 世界杯淘汰赛路线预测 · Knockout Radar" />
+    <meta name="twitter:image" content="https://knockoutradar.wisentech.ai/assets/og.jpg" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Knockout Radar",
+      "alternateName": "2026 世界杯淘汰赛路线预测",
+      "url": "https://knockoutradar.wisentech.ai/",
+      "description": "基于真实赛程与 20,000 次 Elo 蒙特卡洛模拟的 2026 世界杯晋级概率与对阵预测",
+      "inLanguage": ["zh-CN", "en", "es", "zh-HK"]
+    }
+    </script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -82,7 +107,7 @@
             <button data-stage="p16" class="active" type="button">16 强</button>
             <button data-stage="p8" type="button">8 强</button>
             <button data-stage="p4" type="button">4 强</button>
-            <button data-stage="pChampion" type="button">夺冠</button>
+            <button data-stage="pFinal" type="button">决赛</button>
           </div>
         </div>
 
@@ -102,6 +127,7 @@
             <button data-matrix="r16" type="button">16 强</button>
             <button data-matrix="r8" type="button">8 强</button>
             <button data-matrix="r4" type="button">4 强</button>
+            <button data-matrix="r2" type="button">决赛</button>
           </div>
         </div>
         <p class="matrix-caption" id="matrixCaption">点按任意格子，查看两队在两万次模拟中实际相遇了多少次。</p>

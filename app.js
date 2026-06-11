@@ -26,9 +26,9 @@ const T = {
       warnT: "强强预警", warnS: (r, p, s, c) => `${r}相遇概率 ${p}% · ${s} 次模拟相遇 ${c} 次`,
       pathT: "路径优势", pathS: "签运最好的强队与最可能的爆冷者",
     },
-    stagesTab: { p32: "32 强", p16: "16 强", p8: "8 强", p4: "4 强", pChampion: "夺冠" },
-    stages: { p32: "进 32 强", p16: "进 16 强", p8: "进 8 强", p4: "进 4 强", pChampion: "夺冠" },
-    rounds: { r32: "32 强", r16: "16 强", r8: "8 强", r4: "半决赛" },
+    stagesTab: { p32: "32 强", p16: "16 强", p8: "8 强", p4: "4 强", pFinal: "决赛" },
+    stages: { p32: "进 32 强", p16: "进 16 强", p8: "进 8 强", p4: "进 4 强", pFinal: "进决赛" },
+    rounds: { r32: "32 强", r16: "16 强", r8: "8 强", r4: "半决赛", r2: "决赛" },
     probTitle: (st) => `${st}概率榜`,
     th: { team: "球队", collision: "撞车风险", path: "路径判断" },
     colShort: "撞车",
@@ -104,9 +104,9 @@ const T = {
       warnT: "Collision Watch", warnS: (r, p, s, c) => `${p}% chance to meet in the ${r} · met ${c} times in ${s} runs`,
       pathT: "Path Advantage", pathS: "Luckiest draws among favorites, plus the likeliest giant-killers",
     },
-    stagesTab: { p32: "R32", p16: "R16", p8: "QF", p4: "SF", pChampion: "Title" },
-    stages: { p32: "Reach R32", p16: "Reach R16", p8: "Reach QF", p4: "Reach SF", pChampion: "Win the title" },
-    rounds: { r32: "Round of 32", r16: "Round of 16", r8: "quarter-finals", r4: "semi-finals" },
+    stagesTab: { p32: "R32", p16: "R16", p8: "QF", p4: "SF", pFinal: "Final" },
+    stages: { p32: "Reach R32", p16: "Reach R16", p8: "Reach QF", p4: "Reach SF", pFinal: "Reach the final" },
+    rounds: { r32: "Round of 32", r16: "Round of 16", r8: "quarter-finals", r4: "semi-finals", r2: "the final" },
     probTitle: (st) => `${st} — odds board`,
     th: { team: "Team", collision: "Collision risk", path: "Path read" },
     colShort: "risk",
@@ -182,9 +182,9 @@ const T = {
       warnT: "Alerta de Choques", warnS: (r, p, s, c) => `${p}% de cruce en ${r} · ${c} cruces en ${s} simulaciones`,
       pathT: "Ventaja de Ruta", pathS: "Los favoritos con mejor sorteo y los aspirantes a la sorpresa",
     },
-    stagesTab: { p32: "1/16", p16: "Octavos", p8: "Cuartos", p4: "Semis", pChampion: "Campeón" },
-    stages: { p32: "Llegar a 16avos", p16: "Llegar a octavos", p8: "Llegar a cuartos", p4: "Llegar a semis", pChampion: "Ser campeón" },
-    rounds: { r32: "16avos", r16: "octavos", r8: "cuartos", r4: "semifinales" },
+    stagesTab: { p32: "1/16", p16: "Octavos", p8: "Cuartos", p4: "Semis", pFinal: "Final" },
+    stages: { p32: "Llegar a 16avos", p16: "Llegar a octavos", p8: "Llegar a cuartos", p4: "Llegar a semis", pFinal: "Llegar a la final" },
+    rounds: { r32: "16avos", r16: "octavos", r8: "cuartos", r4: "semifinales", r2: "la final" },
     probTitle: (st) => `${st} — tabla de probabilidades`,
     th: { team: "Equipo", collision: "Riesgo de choque", path: "Lectura de ruta" },
     colShort: "choque",
@@ -259,9 +259,9 @@ const T = {
       warnT: "強強對碰預警", warnS: (r, p, s, c) => `${r}對碰機率 ${p}% · ${s} 次模擬碰咗 ${c} 次`,
       pathT: "籤運優勢", pathS: "籤運最好嘅強隊，同埋最有機會爆冷嗰啲",
     },
-    stagesTab: { p32: "32 強", p16: "16 強", p8: "8 強", p4: "4 強", pChampion: "奪冠" },
-    stages: { p32: "入 32 強", p16: "入 16 強", p8: "入 8 強", p4: "入 4 強", pChampion: "奪冠" },
-    rounds: { r32: "32 強", r16: "16 強", r8: "8 強", r4: "準決賽" },
+    stagesTab: { p32: "32 強", p16: "16 強", p8: "8 強", p4: "4 強", pFinal: "決賽" },
+    stages: { p32: "入 32 強", p16: "入 16 強", p8: "入 8 強", p4: "入 4 強", pFinal: "入決賽" },
+    rounds: { r32: "32 強", r16: "16 強", r8: "8 強", r4: "準決賽", r2: "決賽" },
     probTitle: (st) => `${st}機率榜`,
     th: { team: "球隊", collision: "撞車風險", path: "籤運判斷" },
     colShort: "撞車",
@@ -459,11 +459,15 @@ function renderBrief() {
 }
 
 /* ---------- 洞察条 ---------- */
-const PREV_STAGE = { p16: "p32", p8: "p16", p4: "p8", pChampion: "p4" };
+const PREV_STAGE = { p16: "p32", p8: "p16", p4: "p8", pFinal: "p4" };
 
 function renderInsights() {
   const t = L();
   const s = S();
+  // 决赛档：不渲染统计条，只保留前四纯排名
+  const box = $("#insights");
+  if (state.stage === "pFinal") { box.innerHTML = ""; box.style.display = "none"; return; }
+  box.style.display = "";
   const i = s.insights;
   const stage = state.stage;
   const card = (label, value, note, cls = "") =>
@@ -515,18 +519,26 @@ function animateNums(root) {
 /* ---------- 概率榜 ---------- */
 function renderRanking() {
   const t = L();
-  const teams = [...S().teams].sort((a, b) => b[state.stage] - a[state.stage]).slice(0, 16);
+  const simple = state.stage === "pFinal"; // 决赛档：纯排名，撞车/路径口径不适用
+  const teams = [...S().teams].sort((a, b) => b[state.stage] - a[state.stage]).slice(0, simple ? 4 : 16);
   $("#probabilityTitle").textContent = t.probTitle(t.stages[state.stage]);
+  $("#ranking").classList.toggle("simple", simple);
 
-  const header =
-    `<div class="rk-row header" role="row">
-      <span></span><span>${t.th.team}</span><span>${t.stages[state.stage]}</span>
-      <span>${t.th.collision}</span><span class="h-path">${t.th.path}</span>
-    </div>`;
+  const header = simple
+    ? `<div class="rk-row header" role="row">
+        <span></span><span>${t.th.team}</span><span>${t.stages[state.stage]}</span>
+      </div>`
+    : `<div class="rk-row header" role="row">
+        <span></span><span>${t.th.team}</span><span>${t.stages[state.stage]}</span>
+        <span>${t.th.collision}</span><span class="h-path">${t.th.path}</span>
+      </div>`;
 
   const rows = teams.map((x, idx) => {
     const pathCls = x.pathCode === "adv" ? "good" : x.pathCode === "press" ? "bad" : "mid";
-    const colCls = x.collision < 25 ? "low" : "";
+    const colCls = x.collision >= 50 ? "hot" : "";
+    const tail = simple ? "" : `
+      <span class="rk-collision ${colCls}"><span class="rk-mini">${t.colShort}</span><span class="num">${x.collision}%</span></span>
+      <span class="rk-path ${pathCls}">${t.pathLabels[x.pathCode]}<br /><span class="sub num">${t.oppPool} ${x.avgR32OppElo}</span></span>`;
     return `<div class="rk-row" role="row">
       <span class="rk-index num">${idx + 1}</span>
       <span class="rk-team">
@@ -538,9 +550,7 @@ function renderRanking() {
       <span class="rk-prob">
         <span class="rk-bar"><i style="width:${x[state.stage]}%"></i></span>
         <span class="rk-val num"><span class="rk-mini rk-mini-stage">${t.stagesTab[state.stage]}</span>${x[state.stage]}%</span>
-      </span>
-      <span class="rk-collision ${colCls}"><span class="rk-mini">${t.colShort}</span><span class="num">${x.collision}%</span></span>
-      <span class="rk-path ${pathCls}">${t.pathLabels[x.pathCode]}<br /><span class="sub num">${t.oppPool} ${x.avgR32OppElo}</span></span>
+      </span>${tail}
     </div>`;
   });
   $("#ranking").innerHTML = header + rows.join("");

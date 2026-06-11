@@ -277,7 +277,7 @@ function makeRecorder() {
         this.g1[table[g][0]]++; this.g2[table[g][1]]++; this.g3[table[g][2]]++;
       }
     },
-    meet: { r32: zz(), r16: zz(), r8: zz(), r4: zz() },
+    meet: { r32: zz(), r16: zz(), r8: zz(), r4: zz(), r2: zz() },
     r32opp: zz(),
     modal: new Map(), // num -> Map("a-b" -> count)
     modalWin: new Map(),
@@ -286,6 +286,7 @@ function makeRecorder() {
       if (round === "Round of 16") return "r16";
       if (round === "Quarter-final") return "r8";
       if (round === "Semi-final") return "r4";
+      if (round === "Final") return "r2";
       return null;
     },
     pair(m, a, b) {
@@ -421,7 +422,7 @@ function summarize(rec) {
   const matrixTeams = top16.map((t) => t.en);
   const idOf = (en) => byEn.get(en).id;
   const matrices = {};
-  for (const s of ["r32", "r16", "r8", "r4"]) {
+  for (const s of ["r32", "r16", "r8", "r4", "r2"]) {
     matrices[s] = matrixTeams.map((a) =>
       matrixTeams.map((b) => (a === b ? null : pct(rec.meet[s][idOf(a)][idOf(b)])))
     );
