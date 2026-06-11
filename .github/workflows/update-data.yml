@@ -1,0 +1,36 @@
+yamlname: 更新预测数据
+
+on:
+  schedule:
+    # 世界杯期间每天跑两次（UTC 06:00 / 18:00，对应北京时间 14:00 / 02:00，
+    # 覆盖北美赛区每日比赛结束后的时间窗）
+    - cron: "0 6 * * *"
+    - cron: "0 18 * * *"
+  workflow_dispatch: {} # 也可以手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 拉取最新赛程与比分
+        run: node scripts/fetch-fixtures.mjs
+
+      - name: 重跑蒙特卡洛模拟
+        run: node scripts/simulate.mjs --sims 20000
+
+      - name: 提交更新
+        run: |
+          git config user.name "knockout-radar-bot"
+          git config user.email "actions@github.com"
+          git add data/fixtures.json data.json
+          git diff --cached --quiet || git commit -m "data: $(date -u +'%Y-%m-%d %H:%M') UTC 自动更新"
+          git push
